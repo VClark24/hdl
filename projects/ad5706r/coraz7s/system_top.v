@@ -73,7 +73,11 @@ module system_top (
   output          spi_sclk,
   output          spi_csb,
   output          spi_sdo,
-  input           spi_sdi
+  input           spi_sdi,
+  
+  //debug
+  output          debug_pwm_0,
+  output          debug_spi_clk
 );
 
   // internal signals
@@ -133,14 +137,14 @@ module system_top (
     .gpio_t (gpio_t),
 
     .spi0_clk_i (1'b0),
-    .spi0_clk_o (spi_sclk),
-    .spi0_csn_0_o (spi_csb),
+    .spi0_clk_o (),
+    .spi0_csn_0_o (),
     .spi0_csn_1_o (),
     .spi0_csn_2_o (),
     .spi0_csn_i (1'b1),
-    .spi0_sdi_i (spi_sdi),
+    .spi0_sdi_i (1'b0),
     .spi0_sdo_i (1'b0),
-    .spi0_sdo_o (spi_sdo),
+    .spi0_sdo_o (),
     .spi1_clk_i (1'b0),
     .spi1_clk_o (),
     .spi1_csn_0_o (),
@@ -149,10 +153,16 @@ module system_top (
     .spi1_csn_i (1'b1),
     .spi1_sdi_i (1'b0),
     .spi1_sdo_i (1'b0),
-    .spi1_sdo_o(),
+    .spi1_sdo_o (),
+    .spi_sdo (spi_sdo),
+    .spi_sdi (spi_sdi),
+    .spi_cs (spi_csb),
+    .spi_sclk (spi_sclk),
     .iic_ard_scl_io (iic_ard_scl),
     .iic_ard_sda_io (iic_ard_sda),
-    .ldacb_tgp(ldacb_tgp));
+    .ldacb_tgp(ldacb_tgp),
+    .debug_pwm_0(debug_pwm_0),
+    .debug_spi_clk(debug_spi_clk));
 
 endmodule
 
